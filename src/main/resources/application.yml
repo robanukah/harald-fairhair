@@ -1,0 +1,10 @@
+server:
+  port: 9090
+  undertow:
+    accesslog:
+      enabled: true
+      dir: target/logs
+      pattern: combined
+  compression:
+    enabled: true
+    min-response-size: 1
