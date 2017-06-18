@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.4.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '1.5.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'groovy'
@@ -18,22 +18,36 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-actuator')
+    /**
+     *  Spring dependencies
+     */
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-undertow"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-data-rest"
+    compile "org.springframework.boot:spring-boot-devtools"
+    compile "org.springframework.data:spring-data-rest-hal-browser"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
 //	compile('org.springframework.boot:spring-boot-starter-aop')
-//	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-//	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile('org.springframework.data:spring-data-rest-hal-browser')
 //	compile('org.springframework.boot:spring-boot-starter-hateoas')
 //	compile('org.springframework.boot:spring-boot-starter-security')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-devtools')
-	compile('org.springframework.boot:spring-boot-starter-undertow')
-	compile('org.codehaus.groovy:groovy')
-//	compileOnly('org.projectlombok:lombok')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    /**
+     *  Other dependencies
+     */
+    compile "org.codehaus.groovy:groovy"
+    compile "com.h2database:h2"
+    compileOnly "org.projectlombok:lombok"
+    compile "org.flywaydb:flyway-core:$flywayCoreVersion"
+    runtime "org.postgresql:postgresql:$postgresqlVersion"
+
+    /**
+     *  Test dependencies
+     */
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
