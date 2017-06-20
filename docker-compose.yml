@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  db:
+    container_name: face_palm_local
+    image: postgres:9.6.3-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=face_palm_local
+      - POSTGRES_PASSWORD=face_palm_local

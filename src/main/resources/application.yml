@@ -5,7 +5,7 @@ face_palm:
   app:
     name: Face Palm
   db:
-    url: postgresql://localhost:5433/face_palm_local
+    url: postgresql://localhost:5432/face_palm_local
     username: face_palm_local
     password: face_palm_local
 
