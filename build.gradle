@@ -10,12 +10,24 @@ buildscript {
     }
 }
 
-apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
+group = 'com.github.solairerove'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = this.name
+    group = this.group
+    version = this.version
+}
+
+bootRun {
+    addResources = true
+}
 
 repositories {
     mavenCentral()
@@ -39,8 +51,6 @@ dependencies {
     /**
      *  Other dependencies
      */
-    compile "org.codehaus.groovy:groovy"
-    compile "com.h2database:h2"
     compileOnly "org.projectlombok:lombok"
     compile "org.flywaydb:flyway-core:$flywayCoreVersion"
     runtime "org.postgresql:postgresql:$postgresqlVersion"

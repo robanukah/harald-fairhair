@@ -1,4 +1,4 @@
-# face-palm-spring-groovy
+# face-palm-spring
 Face palm spring based project
 
 ### How to start:
