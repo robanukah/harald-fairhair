@@ -1,10 +1,19 @@
-CREATE TABLE post (
+CREATE TABLE IF NOT EXISTS post (
   id SERIAL,
   title TEXT NOT NULL,
   author TEXT NOT NULL,
   date TEXT NOT NULL,
   content TEXT NOT NULL,
-  CONSTRAINT pk_posst_id PRIMARY KEY (id)
+  CONSTRAINT pk_post_id PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS user (
+  id SERIAL,
+  username VARCHAR(64) NOT NULL,
+  password VARCHAR(64) NOT NULL,
+  firstname VARCHAR(64) NOT NULL,
+  lastname VARCHAR(64) NOT NULL,
+  email VARCHAR(64) NOT NULL
 );
 
 -- create table if not exists school (
