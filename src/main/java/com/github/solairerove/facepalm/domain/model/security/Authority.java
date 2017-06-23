@@ -25,6 +25,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Authority implements Persistable<Integer> {
 
+    private static final long serialVersionUID = -791121532448685239L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority_id_seq")

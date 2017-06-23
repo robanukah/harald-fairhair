@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,6 +25,8 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 public class User implements Persistable<Integer> {
+
+    private static final long serialVersionUID = -1515312152555322990L;
 
     @Id
     @Column(name = "id")

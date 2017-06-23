@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class Post implements Persistable<Integer> {
 
+    private static final long serialVersionUID = -1229358169012104747L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_id_seq")
