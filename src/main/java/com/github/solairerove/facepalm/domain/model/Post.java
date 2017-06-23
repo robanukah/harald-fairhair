@@ -1,4 +1,4 @@
-package com.github.solairerove.facepalm.domain;
+package com.github.solairerove.facepalm.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 public class Post implements Persistable<Integer> {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_id_seq")
     @SequenceGenerator(name = "post_id_seq", sequenceName = "post_id_seq", allocationSize = 1)
     private Integer id;

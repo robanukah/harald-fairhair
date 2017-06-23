@@ -52,6 +52,7 @@ dependencies {
      *  Other dependencies
      */
     compileOnly "org.projectlombok:lombok"
+    compile "com.h2database:h2"
     compile "org.flywaydb:flyway-core:$flywayCoreVersion"
     runtime "org.postgresql:postgresql:$postgresqlVersion"
 
