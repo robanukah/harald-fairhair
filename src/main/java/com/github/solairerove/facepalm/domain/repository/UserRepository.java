@@ -2,8 +2,11 @@ package com.github.solairerove.facepalm.domain.repository;
 
 import com.github.solairerove.facepalm.domain.model.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    User findByUsername(String username);
+    @Query(value = "select u from User u where u.username = :username")
+    User findByUsername(@Param("username") String username);
 }

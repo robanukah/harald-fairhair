@@ -23,15 +23,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "jwt_user")
 public class User implements Persistable<Integer> {
 
     private static final long serialVersionUID = -1515312152555322990L;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
-    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jwt_user_id_seq")
+    @SequenceGenerator(name = "jwt_user_id_seq", sequenceName = "jwt_user_id_seq", allocationSize = 1)
     private Integer id;
 
     @Column(name = "username", length = 64, unique = true)
@@ -62,7 +62,7 @@ public class User implements Persistable<Integer> {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_authority",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            joinColumns = {@JoinColumn(name = "jwt_user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
     private List<Authority> authorities;
 
