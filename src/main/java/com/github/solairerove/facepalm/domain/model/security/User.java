@@ -39,17 +39,17 @@ public class User implements Persistable<Integer> {
     @Size(min = 4, max = 64)
     private String username;
 
-    @Column(name = "password", length = 64, unique = true)
+    @Column(name = "password", length = 64)
     @NotNull
     @Size(min = 8, max = 64)
     private String password;
 
-    @Column(name = "first_name", length = 64, unique = true)
+    @Column(name = "first_name", length = 64)
     @NotNull
     @Size(min = 4, max = 64)
     private String firstName;
 
-    @Column(name = "last_name", length = 64, unique = true)
+    @Column(name = "last_name", length = 64)
     @NotNull
     @Size(min = 4, max = 64)
     private String lastName;

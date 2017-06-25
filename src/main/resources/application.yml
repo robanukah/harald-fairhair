@@ -14,14 +14,6 @@ face_palm:
 # ===============================
 server:
   port: 9090
-  undertow:
-    accesslog:
-      enabled: true
-      dir: target/logs
-      pattern: combined
-  compression:
-    enabled: true
-    min-response-size: 1
 
 # ===============================
 # [ Spring Properties ]
@@ -49,6 +41,7 @@ spring:
 flyway:
   enabled: true
   locations: classpath:db/migration
+  baseline-on-migrate: true
 
 # ===============================
 # [ Logging Properties ]
@@ -58,9 +51,7 @@ logging:
     com:
       github:
         solairerove:
-          facepalm:
-            spring:
-              groovy: DEBUG
+          facepalm: DEBUG
     org:
       springframework: INFO
       hibernate: ERROR

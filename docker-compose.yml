@@ -9,3 +9,4 @@ services:
     environment:
       - POSTGRES_USER=face_palm_local
       - POSTGRES_PASSWORD=face_palm_local
+      - POSTGRES_DB=face_palm_local
