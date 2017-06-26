@@ -25,6 +25,9 @@ spring:
     url: jdbc:${face_palm.db.url}
     username: ${face_palm.db.username}
     password: ${face_palm.db.password}
+    initialize: true
+    init-sql: classpath:*schema.sql
+    data: classpath:*data.sql
   jpa:
     show-sql: false
     hibernate:
@@ -33,15 +36,6 @@ spring:
       hibernate:
         id:
           new_generator_mappings: true
-
-
-# ===============================
-# [ Flyway Properties ]
-# ===============================
-flyway:
-  enabled: true
-  locations: classpath:db/migration
-  baseline-on-migrate: true
 
 # ===============================
 # [ Logging Properties ]
