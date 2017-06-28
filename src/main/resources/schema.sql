@@ -19,12 +19,12 @@ CREATE TYPE "authority_name" AS ENUM ('ROLE_USER', 'ROLE_ADMIN');
 
 CREATE TABLE IF NOT EXISTS "authority" (
   id SERIAL NOT NULL PRIMARY KEY,
-  name authority_name NOT NULL
+  name "authority_name" NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "user_authority" (
   id SERIAL NOT NULL PRIMARY KEY,
-  jwt_user_id INT NOT NULL REFERENCES jwt_user (id) ON UPDATE CASCADE ON DELETE CASCADE,
-  authority_id INT NOT NULL REFERENCES authority (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  jwt_user_id INT NOT NULL REFERENCES "jwt_user" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  authority_id INT NOT NULL REFERENCES "authority" (id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT uk_user_authority_id UNIQUE (jwt_user_id, authority_id)
 );

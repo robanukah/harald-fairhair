@@ -1,13 +1,13 @@
 # ===============================
 # [ Face palm Properties ]
 # ===============================
-face_palm:
-  app:
-    name: Face Palm
-  db:
-    url: postgresql://localhost:5432/face_palm_local
-    username: face_palm_local
-    password: face_palm_local
+#face_palm:
+#  app:
+#    name: Face Palm
+#  db:
+#    url: postgresql://localhost:5432/face_palm_local
+#    username: face_palm_local
+#    password: face_palm_local
 
 # ===============================
 # [ Server Properties ]
@@ -44,8 +44,8 @@ spring:
     username: sa
     driverClassName: "org.h2.Driver"
     initialize: true
-    init-sql: classpath:*schema.sql
-    data: classpath:*data.sql
+#    init-sql: classpath:*schema.sql
+#    data: classpath:*data.sql
   jpa:
     database-platform: "org.hibernate.dialect.H2Dialect"
     database: h2
