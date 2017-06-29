@@ -1,6 +1,7 @@
 package com.github.solairerove.facepalm.domain.service;
 
 import com.github.solairerove.facepalm.domain.repository.UserRepository;
+import com.github.solairerove.facepalm.security.JwtUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +19,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        Optional.ofNullable(userRepository.findByUsername(username))
-//                .map(user -> )
+        return Optional.ofNullable(userRepository.findByUsername(username))
+                .map(JwtUser::aJwtUser)
                 .orElseThrow(() -> new UsernameNotFoundException("No user found with " + username));
-
-        return null;
     }
 }

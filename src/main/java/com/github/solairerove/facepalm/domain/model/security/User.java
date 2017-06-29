@@ -24,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "JWT_USER")
-public class User implements Persistable<Integer> {
+public class User implements Persistable<Long> {
 
     private static final long serialVersionUID = -1515312152555322990L;
 
@@ -32,7 +32,7 @@ public class User implements Persistable<Integer> {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jwt_user_id_seq")
     @SequenceGenerator(name = "jwt_user_id_seq", sequenceName = "jwt_user_id_seq", allocationSize = 1)
-    private Integer id;
+    private Long id;
 
     @Column(name = "username", length = 64, unique = true)
     @NotNull
@@ -68,7 +68,7 @@ public class User implements Persistable<Integer> {
 
     @JsonIgnore
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
