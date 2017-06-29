@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "post")
+@Table(name = "POST")
 @NoArgsConstructor
 public class Post implements Persistable<Integer> {
 

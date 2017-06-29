@@ -21,7 +21,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "authority")
+@Table(name = "AUTHORITY")
 @NoArgsConstructor
 public class Authority implements Persistable<Integer> {
 

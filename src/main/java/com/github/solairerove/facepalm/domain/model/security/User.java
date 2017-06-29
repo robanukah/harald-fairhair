@@ -23,7 +23,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "jwt_user")
+@Table(name = "JWT_USER")
 public class User implements Persistable<Integer> {
 
     private static final long serialVersionUID = -1515312152555322990L;

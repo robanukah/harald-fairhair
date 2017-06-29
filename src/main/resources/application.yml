@@ -1,15 +1,4 @@
 # ===============================
-# [ Face palm Properties ]
-# ===============================
-#face_palm:
-#  app:
-#    name: Face Palm
-#  db:
-#    url: postgresql://localhost:5432/face_palm_local
-#    username: face_palm_local
-#    password: face_palm_local
-
-# ===============================
 # [ Server Properties ]
 # ===============================
 server:
@@ -18,40 +7,23 @@ server:
 # ===============================
 # [ Spring Properties ]
 # ===============================
-#spring:
-#  application:
-#    name: ${face_palm.app.name}
-#  datasource:
-#    url: jdbc:${face_palm.db.url}
-#    username: ${face_palm.db.username}
-#    password: ${face_palm.db.password}
-#    initialize: true
-#    init-sql: classpath:*schema.sql
-#    data: classpath:*data.sql
-#  jpa:
-#    show-sql: false
-#    hibernate:
-#      ddl-auto: create-drop
-#    properties:
-#      hibernate:
-#        id:
-#          new_generator_mappings: true
-
-#data source properties
 spring:
   datasource:
     url: jdbc:h2:mem:post
     username: sa
     driverClassName: "org.h2.Driver"
     initialize: true
-#    init-sql: classpath:*schema.sql
-#    data: classpath:*data.sql
+    data: classpath:*data.sql
   jpa:
     database-platform: "org.hibernate.dialect.H2Dialect"
     database: h2
     show-sql: true
     generate-ddl: false
     hibernate.ddl-auto: none
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: true
 
 # ===============================
 # [ Logging Properties ]
