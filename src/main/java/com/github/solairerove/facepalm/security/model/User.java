@@ -1,4 +1,4 @@
-package com.github.solairerove.facepalm.domain.model.security;
+package com.github.solairerove.facepalm.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

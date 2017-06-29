@@ -1,9 +1,9 @@
 package com.github.solairerove.facepalm.reposiory;
 
-import com.github.solairerove.facepalm.domain.model.security.Authority;
-import com.github.solairerove.facepalm.domain.model.security.AuthorityName;
-import com.github.solairerove.facepalm.domain.model.security.User;
-import com.github.solairerove.facepalm.domain.repository.UserRepository;
+import com.github.solairerove.facepalm.security.model.Authority;
+import com.github.solairerove.facepalm.security.model.AuthorityName;
+import com.github.solairerove.facepalm.security.model.User;
+import com.github.solairerove.facepalm.security.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.github.solairerove.facepalm.domain.model.security.jwt;
+package com.github.solairerove.facepalm.security.model.jwt;
 
 import lombok.Value;
 

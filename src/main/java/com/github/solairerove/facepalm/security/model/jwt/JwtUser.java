@@ -1,8 +1,8 @@
-package com.github.solairerove.facepalm.security;
+package com.github.solairerove.facepalm.security.model.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.solairerove.facepalm.domain.model.security.Authority;
-import com.github.solairerove.facepalm.domain.model.security.User;
+import com.github.solairerove.facepalm.security.model.Authority;
+import com.github.solairerove.facepalm.security.model.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class JwtUser implements UserDetails {
     private final String email;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public static JwtUser aJwtUser(final User user) {
+    public static JwtUser fromUser(final User user) {
         return new JwtUser(
                 user.getId(),
                 user.getUsername(),

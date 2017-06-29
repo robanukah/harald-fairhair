@@ -1,6 +1,6 @@
-package com.github.solairerove.facepalm.domain.repository;
+package com.github.solairerove.facepalm.security.repository;
 
-import com.github.solairerove.facepalm.domain.model.security.User;
+import com.github.solairerove.facepalm.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
