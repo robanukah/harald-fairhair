@@ -6,8 +6,8 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +17,8 @@ import static io.jsonwebtoken.SignatureAlgorithm.HS512;
 // TODO: rewrite to assistant components
 // TODO: use optional
 // TODO so piece of shit
-public class JwtTokenUtil implements Serializable {
-
-    private static final long serialVersionUID = 6515083330614430445L;
+@Component
+public class JwtTokenUtil {
 
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_AUDIENCE = "audience";
