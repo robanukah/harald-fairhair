@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,8 @@ public class JwtUser implements UserDetails {
     private final String password;
     private final String email;
     private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean enabled;
+    private final Date lastPasswordResetDate;
 
     public static JwtUser fromUser(final User user) {
         return new JwtUser(
@@ -36,7 +39,9 @@ public class JwtUser implements UserDetails {
                 user.getLastName(),
                 user.getEmail(),
                 user.getPassword(),
-                mapToGrantedAuthorities(user.getAuthorities())
+                mapToGrantedAuthorities(user.getAuthorities()),
+                user.getEnabled(),
+                user.getLastPasswordResetDate()
         );
     }
 
@@ -82,6 +87,6 @@ public class JwtUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 }
