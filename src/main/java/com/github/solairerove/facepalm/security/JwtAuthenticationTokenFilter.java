@@ -44,6 +44,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
         if (username != null && authenticationFacade.getAuthentication() == null) {
             final UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
             final Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 
             if (jwtTokenUtil.validateToken(authToken, userDetails)) {

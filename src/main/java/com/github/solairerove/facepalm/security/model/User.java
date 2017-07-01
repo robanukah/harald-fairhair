@@ -33,8 +33,7 @@ public class User implements Persistable<Long> {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jwt_user_id_seq")
-    @SequenceGenerator(name = "jwt_user_id_seq", sequenceName = "jwt_user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "username", length = 64, unique = true)
