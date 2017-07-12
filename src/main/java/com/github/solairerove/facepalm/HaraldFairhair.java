@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FacePalm {
+public class HaraldFairhair {
     public static void main(String... args) {
-        SpringApplication.run(FacePalm.class, args);
+        SpringApplication.run(HaraldFairhair.class, args);
     }
 }
