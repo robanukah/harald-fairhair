@@ -2,11 +2,11 @@ version: '3'
 
 services:
   db:
-    container_name: face_palm_local
+    container_name: harald_fairhair
     image: postgres:9.6.3-alpine
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=face_palm_local
-      - POSTGRES_PASSWORD=face_palm_local
-      - POSTGRES_DB=face_palm_local
+      - POSTGRES_USER=harald_fairhair
+      - POSTGRES_PASSWORD=harald_fairhair
+      - POSTGRES_DB=harald_fairhair

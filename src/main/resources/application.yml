@@ -45,8 +45,7 @@ logging:
     com:
       github:
         solairerove:
-          facepalm: DEBUG
+          harald: DEBUG
     org:
       springframework: INFO
       hibernate: ERROR
-      flywaydb: INFO

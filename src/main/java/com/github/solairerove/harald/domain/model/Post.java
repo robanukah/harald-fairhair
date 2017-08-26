@@ -1,4 +1,4 @@
-package com.github.solairerove.facepalm.domain.model;
+package com.github.solairerove.harald.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

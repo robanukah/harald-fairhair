@@ -1,4 +1,4 @@
-package com.github.solairerove.facepalm;
+package com.github.solairerove.harald;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
