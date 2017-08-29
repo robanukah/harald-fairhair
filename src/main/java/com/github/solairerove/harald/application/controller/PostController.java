@@ -1,8 +1,10 @@
-package com.github.solairerove.harald.application;
+package com.github.solairerove.harald.application.controller;
 
 import com.github.solairerove.harald.application.dto.PostDTO;
+import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +18,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PostController {
 
-    //    private final DozerMapper mapper;
+    private final DozerBeanMapper mapper;
     private final PostService postService;
 
     @RequestMapping(path = "/{id}")
-    public ResponseEntity<PostDTO> get(@PathVariable(name = "id") final Integer id) {
-//        final Post post = postService.fetchById(id);
+    public ResponseEntity get(@PathVariable(name = "id") final Integer id) {
+        final Post post = postService.fetchById(id);
 
-//        final PostDTO response = mapper.map(post, PostDTO.class);
-        return null;
+        final PostDTO postDTO = mapper.map(post, PostDTO.class);
+
+        return ResponseEntity.ok().body(postDTO);
     }
 }
