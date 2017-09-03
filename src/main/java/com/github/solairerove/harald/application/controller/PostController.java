@@ -25,8 +25,8 @@ public class PostController {
     public ResponseEntity get(@PathVariable(name = "id") final Long id) {
         final Post post = postService.fetchById(id);
 
-//        final PostDTO postDTO = mapper.map(post, PostDTO.class);
+        final PostDTO postDTO = mapper.map(post, PostDTO.class);
 
-        return ResponseEntity.ok().body(post);
+        return ResponseEntity.ok().body(postDTO);
     }
 }
