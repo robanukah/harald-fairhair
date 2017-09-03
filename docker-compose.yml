@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     container_name: harald_fairhair
-    image: postgres:9.6.3-alpine
+    image: postgres:9.6.5-alpine
     ports:
       - "5432:5432"
     environment:

@@ -18,8 +18,8 @@ public interface PostService {
     /**
      * Fetch {@link Post} entity by id.
      *
-     * @param id a {@link Integer} id.
+     * @param id a {@link Long} id.
      * @return {@link Post} entity by id.
      */
-    Post fetchById(Integer id);
+    Post fetchById(Long id);
 }

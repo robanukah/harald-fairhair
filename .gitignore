@@ -1,6 +1,7 @@
 .gradle
 /build/
 target
+/out
 .log
 classes
 !gradle/wrapper/gradle-wrapper.jar

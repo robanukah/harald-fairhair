@@ -3,11 +3,13 @@ package com.github.solairerove.harald.application.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
-@Data
+@Getter
+@RequiredArgsConstructor
 @JsonRootName(value = "post")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostDTO implements Serializable {

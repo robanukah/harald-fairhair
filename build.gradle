@@ -46,7 +46,6 @@ dependencies {
      */
     compileOnly "org.projectlombok:lombok"
 
-    compile "com.h2database:h2"
     compile "net.sf.dozer:dozer:$dozerVersion"
 
     runtime "org.postgresql:postgresql:$postgresqlVersion"

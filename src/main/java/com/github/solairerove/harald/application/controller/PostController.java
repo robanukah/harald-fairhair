@@ -22,11 +22,11 @@ public class PostController {
     private final PostService postService;
 
     @RequestMapping(path = "/{id}")
-    public ResponseEntity get(@PathVariable(name = "id") final Integer id) {
+    public ResponseEntity get(@PathVariable(name = "id") final Long id) {
         final Post post = postService.fetchById(id);
 
-        final PostDTO postDTO = mapper.map(post, PostDTO.class);
+//        final PostDTO postDTO = mapper.map(post, PostDTO.class);
 
-        return ResponseEntity.ok().body(postDTO);
+        return ResponseEntity.ok().body(post);
     }
 }

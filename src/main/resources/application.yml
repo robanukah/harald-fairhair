@@ -5,37 +5,26 @@ server:
   port: 9090
 
 # ===============================
-# [ Spring Properties ]
+# [ Spring Data JPA Properties ]
 # ===============================
 spring:
-  datasource:
-    url: jdbc:h2:mem:post;MODE=PostgreSQL;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
-    username: sa
-    driverClassName: "org.h2.Driver"
-    initialize: true
-    data: classpath:*data.sql
   jpa:
-    database-platform: "org.hibernate.dialect.H2Dialect"
-    database: h2
+    database: postgresql
+    hibernate:
+      ddl-auto: none
     show-sql: true
-    generate-ddl: false
-    hibernate.ddl-auto: none
-    properties:
-      hibernate:
-        id:
-          new_generator_mappings: true
-
-# ===============================
-# [ JWT Properties ]
-# ===============================
-jwt:
-  header: Authorization
-  secret: mySecret
-  expiration: 604800
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
+    generate-ddl: true
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/
+    username: harald_fairhair
+    password: harald_fairhair
+    name: harald_fairhair
+    initialize: true
 
 # ===============================
 # [ Logging Properties ]

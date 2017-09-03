@@ -1,6 +1,5 @@
 package com.github.solairerove.harald.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
@@ -10,23 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "POST")
+@Table(name = "post")
 @NoArgsConstructor
-public class Post implements Persistable<Integer> {
+public class Post implements Persistable<Long> {
 
     private static final long serialVersionUID = -1229358169012104747L;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_id_seq")
-    @SequenceGenerator(name = "post_id_seq", sequenceName = "post_id_seq", allocationSize = 1)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @NotNull(message = "Title is required!")
     @Column(name = "title", nullable = false)
@@ -41,13 +38,11 @@ public class Post implements Persistable<Integer> {
     @Column(name = "content")
     private String content;
 
-    @JsonIgnore
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    @JsonIgnore
     @Override
     public boolean isNew() {
         return id == null;

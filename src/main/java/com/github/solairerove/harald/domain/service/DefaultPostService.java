@@ -18,7 +18,7 @@ public class DefaultPostService implements PostService {
     }
 
     @Override
-    public Post fetchById(final Integer id) {
+    public Post fetchById(final Long id) {
         return postRepository.findOne(id);
     }
 }
