@@ -12,7 +12,6 @@ spring:
     database: postgresql
     hibernate:
       ddl-auto: none
-    show-sql: true
     generate-ddl: true
   data:
     jpa:

@@ -2,20 +2,22 @@ package com.github.solairerove.harald.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-@JsonRootName(value = "post")
+@JsonTypeName(value = "post")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class PostDTO implements Serializable {
 
     private static final long serialVersionUID = 630335968872043885L;
+
+    @JsonProperty
+    private Long id;
 
     @JsonProperty
     private String title;
