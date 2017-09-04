@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -22,7 +23,8 @@ public class Post implements Persistable<Long> {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "post_generator", sequenceName = "post_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "post_generator", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull(message = "Title is required!")
