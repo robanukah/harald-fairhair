@@ -15,26 +15,26 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "post")
 @NoArgsConstructor
+@Table(name = "post")
+@SequenceGenerator(name = "post_generator", sequenceName = "post_sequence", initialValue = 3, allocationSize = 1)
 public class Post implements Persistable<Long> {
 
     private static final long serialVersionUID = -1229358169012104747L;
 
     @Id
-    @Column(name = "id")
-    @SequenceGenerator(name = "post_generator", sequenceName = "post_sequence", allocationSize = 1)
+    @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
     @GeneratedValue(generator = "post_generator", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull(message = "Title is required!")
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, length = 128)
     private String title;
 
-    @Column(name = "author")
+    @Column(name = "author", length = 32)
     private String author;
 
-    @Column(name = "date")
+    @Column(name = "date", length = 32)
     private String date;
 
     @Column(name = "content")
