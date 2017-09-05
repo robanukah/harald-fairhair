@@ -7,11 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultPostService implements PostService {
 
@@ -30,5 +28,14 @@ public class DefaultPostService implements PostService {
 
         return postRepository.findOneById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id: " + id + " doesn't exist"));
+    }
+
+    @Override
+    public Post updateById(Long id, Post post) {
+        log.info("Update post: {} by id: {}", post, id);
+
+        postRepository.updateOneById(id, post.getAuthor());
+
+        return fetchById(id);
     }
 }

@@ -43,4 +43,17 @@ public class PostController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity update(@PathVariable(name = "id") final Long id,
+                                 @RequestBody final PostDTO postDTO) {
+
+        final Post request = mapper.map(postDTO, Post.class);
+
+        final Post updatedPost = postService.updateById(id, request);
+
+        final PostDTO response = mapper.map(updatedPost, PostDTO.class);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
