@@ -34,7 +34,12 @@ public class DefaultPostService implements PostService {
     public Post updateById(Long id, Post post) {
         log.info("Update post: {} by id: {}", post, id);
 
-        postRepository.updateOneById(id, post.getAuthor());
+        postRepository.updateOneById(id,
+                post.getTitle(),
+                post.getAuthor(),
+                post.getDate(),
+                post.getContent()
+        );
 
         return fetchById(id);
     }

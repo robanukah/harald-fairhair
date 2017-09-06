@@ -16,9 +16,11 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE post " +
-            "SET author = COALESCE(?2, author) " +
-            "WHERE id = ?1 " +
-            "AND (?2 IS NOT NULL AND ?2 IS DISTINCT FROM author)", nativeQuery = true)
-    void updateOneById(Long id, String author);
+    @Query(value = "UPDATE post SET " +
+            "title = COALESCE(?2, title), " +
+            "author = COALESCE(?3, author), " +
+            "date = COALESCE(?4, date), " +
+            "content = COALESCE(CAST(?5 AS TEXT), content) " +
+            "WHERE id = ?1", nativeQuery = true)
+    void updateOneById(Long id, String title, String author, String date, String content);
 }
