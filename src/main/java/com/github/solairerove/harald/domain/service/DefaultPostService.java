@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -34,13 +36,15 @@ public class DefaultPostService implements PostService {
     public Post updateById(Long id, Post post) {
         log.info("Update post: {} by id: {}", post, id);
 
+        final Post saved = fetchById(id);
+
         postRepository.updateOneById(id,
-                post.getTitle(),
-                post.getAuthor(),
-                post.getDate(),
-                post.getContent()
+                Objects.isNull(post.getTitle()) ? saved.getTitle() : post.getTitle(),
+                Objects.isNull(post.getAuthor()) ? saved.getAuthor(): post.getAuthor(),
+                Objects.isNull(post.getDate()) ? saved.getDate(): post.getDate(),
+                Objects.isNull(post.getContent()) ? saved.getContent() : post.getContent()
         );
 
-        return fetchById(id);
+        return postRepository.findOne(id);
     }
 }
