@@ -23,4 +23,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "content = COALESCE(CAST(?5 AS TEXT), content) " +
             "WHERE id = ?1", nativeQuery = true)
     void updateOneById(Long id, String title, String author, String date, String content);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM post WHERE id = ?1", nativeQuery = true)
+    void deletePostById(Long id);
 }

@@ -31,4 +31,12 @@ public interface PostService {
      * @return updated {@link Post} entity
      */
     Post updateById(Long id, Post post);
+
+    /**
+     * Delete {@link Post} entity by id.
+     *
+     * @param id a {@link Long} id
+     * @return deleted {@link Post} entity
+     */
+    Post deleteById(Long id);
 }

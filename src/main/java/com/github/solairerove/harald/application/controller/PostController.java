@@ -6,7 +6,6 @@ import com.github.solairerove.harald.domain.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
@@ -30,7 +31,7 @@ public class PostController {
 
         final PostDTO response = mapper.map(post, PostDTO.class);
 
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(OK).body(response);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -41,7 +42,7 @@ public class PostController {
 
         final PostDTO response = mapper.map(createdPost, PostDTO.class);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(CREATED).body(response);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
@@ -54,6 +55,16 @@ public class PostController {
 
         final PostDTO response = mapper.map(updatedPost, PostDTO.class);
 
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(OK).body(response);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable(name = "id") final Long id) {
+
+        final Post deleted = postService.deleteById(id);
+
+        final PostDTO response = mapper.map(deleted, PostDTO.class);
+
+        return ResponseEntity.status(OK).body(response);
     }
 }

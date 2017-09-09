@@ -40,11 +40,22 @@ public class DefaultPostService implements PostService {
 
         postRepository.updateOneById(id,
                 Objects.isNull(post.getTitle()) ? saved.getTitle() : post.getTitle(),
-                Objects.isNull(post.getAuthor()) ? saved.getAuthor(): post.getAuthor(),
-                Objects.isNull(post.getDate()) ? saved.getDate(): post.getDate(),
+                Objects.isNull(post.getAuthor()) ? saved.getAuthor() : post.getAuthor(),
+                Objects.isNull(post.getDate()) ? saved.getDate() : post.getDate(),
                 Objects.isNull(post.getContent()) ? saved.getContent() : post.getContent()
         );
 
         return postRepository.findOne(id);
+    }
+
+    @Override
+    public Post deleteById(Long id) {
+        log.info("Delete post by id: {}", id);
+
+        final Post deleted = fetchById(id);
+
+        postRepository.deletePostById(id);
+
+        return deleted;
     }
 }
