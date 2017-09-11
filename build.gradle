@@ -41,21 +41,22 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
     }
-    compile "org.springframework.boot:spring-boot-starter-undertow"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile("org.springframework.boot:spring-boot-starter-undertow")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
 
     /**
      *  Other dependencies
      */
-    compileOnly "org.projectlombok:lombok"
+    compileOnly("org.projectlombok:lombok")
 
-    compile "net.sf.dozer:dozer:$dozerVersion"
-    compile "org.flywaydb:flyway-core:$flywayVersion"
+    compile("net.sf.dozer:dozer:$dozerVersion")
+    compile("org.flywaydb:flyway-core:$flywayVersion")
 
-    runtime "org.postgresql:postgresql:$postgresqlVersion"
+    runtime("org.postgresql:postgresql:$postgresqlVersion")
 
     /**
      *  Test dependencies
      */
-    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("com.h2database:h2")
 }

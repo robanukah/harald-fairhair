@@ -1,0 +1,31 @@
+# ===============================
+# [ Server Properties ]
+# ===============================
+server:
+  port: 9090
+
+# ===============================
+# [ Spring Data JPA Properties ]
+# ===============================
+spring:
+  jpa:
+    database: h2
+    show-sql: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:post;MODE=PostgreSQL;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+
+# ===============================
+# [ Logging Properties ]
+# ===============================
+logging:
+  level:
+    com:
+      github:
+        solairerove:
+          harald: DEBUG
+    org:
+      springframework: INFO
+      hibernate: ERROR
