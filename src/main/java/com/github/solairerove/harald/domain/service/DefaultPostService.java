@@ -45,7 +45,9 @@ public class DefaultPostService implements PostService {
                 Objects.isNull(post.getContent()) ? saved.getContent() : post.getContent()
         );
 
-        return postRepository.findOne(id);
+        postRepository.flush();
+
+        return fetchById(id);
     }
 
     @Override
