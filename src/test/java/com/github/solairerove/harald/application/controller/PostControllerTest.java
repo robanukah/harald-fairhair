@@ -10,11 +10,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.Is.isA;
 import static org.junit.Assert.assertThat;
@@ -30,8 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@WebAppConfiguration
-public class PostControllerIT {
+public class PostControllerTest {
 
     private final static Long NON_EXISTS_ID = 100L;
 
@@ -92,6 +91,23 @@ public class PostControllerIT {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status", is(400)))
                 .andExpect(jsonPath("$.message", is("Post with id: " + NON_EXISTS_ID + " doesn't exist")));
+    }
+
+    @Test
+    public void findAllTest_expect_success() throws Exception {
+        final Post newPost = new Post();
+        newPost.setTitle("new title");
+        postRepository.save(newPost);
+
+        mvc.perform(request(GET, "/api/v1/posts/")
+                .accept(APPLICATION_JSON_UTF8_VALUE)
+                .contentType(APPLICATION_JSON_UTF8_VALUE))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.posts", hasSize(2)))
+                .andExpect(jsonPath("$.posts.[0].post.title", is(post.getTitle())))
+                .andExpect(jsonPath("$.posts.[1].post.id", is(newPost.getId().intValue())))
+                .andExpect(jsonPath("$.posts.[1].post.title", is(newPost.getTitle())));
     }
 
     @Test

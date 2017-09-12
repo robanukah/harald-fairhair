@@ -1,6 +1,7 @@
 package com.github.solairerove.harald.application.controller;
 
 import com.github.solairerove.harald.application.dto.PostDTO;
+import com.github.solairerove.harald.application.dto.PostsResponse;
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
@@ -24,6 +27,15 @@ public class PostController {
 
     private final DozerBeanMapper mapper;
     private final PostService postService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity getAll() {
+        final List<Post> posts = postService.fetchAll();
+
+        final PostsResponse response = mapper.map(posts, PostsResponse.class);
+
+        return ResponseEntity.status(OK).body(response);
+    }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getById(@PathVariable(name = "id") final Long id) {

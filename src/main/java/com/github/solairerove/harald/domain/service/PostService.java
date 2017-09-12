@@ -2,6 +2,8 @@ package com.github.solairerove.harald.domain.service;
 
 import com.github.solairerove.harald.domain.model.Post;
 
+import java.util.List;
+
 /**
  * Post service.
  */
@@ -22,6 +24,13 @@ public interface PostService {
      * @return {@link Post} entity by id
      */
     Post fetchById(Long id);
+
+    /**
+     * Fetch all {@link Post} entities.
+     *
+     * @return {@link Post} collection
+     */
+    List<Post> fetchAll();
 
     /**
      * Update {@link Post} entity by id.

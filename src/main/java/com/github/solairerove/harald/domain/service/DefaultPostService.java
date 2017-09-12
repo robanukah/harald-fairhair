@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -30,6 +31,13 @@ public class DefaultPostService implements PostService {
 
         return postRepository.findOneById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id: " + id + " doesn't exist"));
+    }
+
+    @Override
+    public List<Post> fetchAll() {
+        log.info("Fetch all posts");
+
+        return postRepository.findAll();
     }
 
     @Override
