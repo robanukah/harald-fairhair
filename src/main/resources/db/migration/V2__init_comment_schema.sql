@@ -6,7 +6,7 @@ CREATE TABLE "comment" (
   post_id BIGINT NOT NULL
 );
 
-CREATE SEQUENCE comment_sequence START WITH 3 INCREMENT BY 1;
+CREATE SEQUENCE comment_sequence START WITH 4 INCREMENT BY 1;
 
 INSERT INTO "comment" (id, author, date, content, post_id)
 VALUES
