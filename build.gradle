@@ -75,7 +75,7 @@ test {
     }
 }
 
-task integrationTest(type: Test) {
+task integrationTest(type: Test) { ->
     include '**/*IT.*'
     testLogging {
         showStandardStreams = true
