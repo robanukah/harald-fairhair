@@ -2,6 +2,8 @@ package com.github.solairerove.harald.domain.service.comment;
 
 import com.github.solairerove.harald.domain.model.Comment;
 
+import java.util.List;
+
 /**
  * Comment service.
  */
@@ -19,8 +21,16 @@ public interface CommentService {
     /**
      * Fetch {@link Comment} entity by id.
      *
-     * @param id a {@link Long} id
+     * @param postId    a {@link Long} post id
+     * @param commentId a {@link Long} comment id
      * @return {@link Comment} entity by id
      */
-    Comment fetchById(Long id);
+    Comment fetchById(Long postId, Long commentId);
+
+    /**
+     * Fetch all {@link Comment} entities from post by id.
+     *
+     * @return {@link Comment} collection
+     */
+    List<Comment> fetchAllFromPost(Long postId);
 }
