@@ -1,4 +1,4 @@
-package com.github.solairerove.harald.domain.service;
+package com.github.solairerove.harald.domain.service.post;
 
 import com.github.solairerove.harald.domain.model.Post;
 

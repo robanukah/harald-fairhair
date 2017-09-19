@@ -1,4 +1,4 @@
-package com.github.solairerove.harald.application.dto;
+package com.github.solairerove.harald.application.dto.post;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.github.solairerove.harald.application.mapping;
 
-import com.github.solairerove.harald.application.dto.PostResponse;
-import com.github.solairerove.harald.application.dto.PostsResponse;
+import com.github.solairerove.harald.application.dto.post.PostResponse;
+import com.github.solairerove.harald.application.dto.post.PostsResponse;
 import com.github.solairerove.harald.domain.model.Post;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.dozer.loader.api.TypeMappingOptions;
@@ -14,7 +14,7 @@ import static org.dozer.loader.api.FieldsMappingOptions.hintB;
 /**
  * Mapping rules for List of posts to post dto list.
  */
-public class PostList2PostDTOList extends BeanMappingBuilder {
+public class Posts2PostsResponse extends BeanMappingBuilder {
 
     @Override
     protected void configure() {

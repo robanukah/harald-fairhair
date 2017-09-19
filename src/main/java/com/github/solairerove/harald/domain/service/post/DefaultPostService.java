@@ -1,4 +1,4 @@
-package com.github.solairerove.harald.domain.service;
+package com.github.solairerove.harald.domain.service.post;
 
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.model.exception.ResourceNotFoundException;
@@ -52,8 +52,6 @@ public class DefaultPostService implements PostService {
                 Objects.isNull(post.getDate()) ? saved.getDate() : post.getDate(),
                 Objects.isNull(post.getContent()) ? saved.getContent() : post.getContent()
         );
-
-        postRepository.flush();
 
         return fetchById(id);
     }

@@ -1,4 +1,4 @@
-package com.github.solairerove.harald.application.dto;
+package com.github.solairerove.harald.application.dto.comment;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,18 +9,15 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@JsonTypeName(value = "post")
+@JsonTypeName(value = "comment")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
-public class PostResponse implements Serializable {
+public class CommentResponse implements Serializable {
 
-    private static final long serialVersionUID = 8221818444202026540L;
+    private static final long serialVersionUID = -6288145995087912178L;
 
     @JsonProperty
     private Long id;
-
-    @JsonProperty
-    private String title;
 
     @JsonProperty
     private String author;

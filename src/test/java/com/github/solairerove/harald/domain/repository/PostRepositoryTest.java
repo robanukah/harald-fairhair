@@ -27,7 +27,7 @@ public class PostRepositoryTest {
 
     @Before
     public void setUp() {
-        postRepository.deleteAllInBatch();
+        postRepository.deleteAll();
 
         post = new Post();
         post.setTitle("Some awesome title");
@@ -40,9 +40,9 @@ public class PostRepositoryTest {
 
     @Test
     public void findOneByIdTest_expect_success() {
-        final Post saved = postRepository.findOneById(id).orElse(null);
+        final Post saved = postRepository.findOneById(id).get();
 
-        assertThat(saved, Is.is(post));
+        assertThat(saved.getContent(), Is.is(post.getContent()));
     }
 
     @Test

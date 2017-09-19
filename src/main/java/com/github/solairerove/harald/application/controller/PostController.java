@@ -1,9 +1,9 @@
 package com.github.solairerove.harald.application.controller;
 
 import com.github.solairerove.harald.application.dto.PostDTO;
-import com.github.solairerove.harald.application.dto.PostsResponse;
+import com.github.solairerove.harald.application.dto.post.PostsResponse;
 import com.github.solairerove.harald.domain.model.Post;
-import com.github.solairerove.harald.domain.service.PostService;
+import com.github.solairerove.harald.domain.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;

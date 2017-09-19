@@ -1,8 +1,9 @@
-package com.github.solairerove.harald.domain.service;
+package com.github.solairerove.harald.domain.service.post;
 
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.model.exception.ResourceNotFoundException;
 import com.github.solairerove.harald.domain.repository.PostRepository;
+import com.github.solairerove.harald.domain.service.post.PostService;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class PostServiceTest {
 
     @Before
     public void setUp() {
-        postRepository.deleteAllInBatch();
+        postRepository.deleteAll();
 
         post = new Post();
         post.setTitle("Some awesome title");
@@ -56,7 +57,7 @@ public class PostServiceTest {
     public void fetchByIdTest_expect_success() {
         final Post fetched = postService.fetchById(id);
 
-        assertThat(fetched, Is.is(post));
+        assertThat(fetched.getContent(), Is.is(post.getContent()));
     }
 
     @Test(expected = ResourceNotFoundException.class)
@@ -92,7 +93,7 @@ public class PostServiceTest {
     public void deleteByIdTest_assertPost_expect_success() {
         final Post deleted = postService.deleteById(id);
 
-        assertThat(deleted, Is.is(post));
+        assertThat(deleted.getContent(), Is.is(post.getContent()));
     }
 
     @Test

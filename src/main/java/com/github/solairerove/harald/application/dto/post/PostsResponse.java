@@ -1,4 +1,4 @@
-package com.github.solairerove.harald.application.dto;
+package com.github.solairerove.harald.application.dto.post;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

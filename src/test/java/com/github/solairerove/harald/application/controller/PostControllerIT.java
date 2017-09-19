@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.solairerove.harald.application.dto.PostDTO;
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.repository.PostRepository;
+import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +52,7 @@ public class PostControllerIT {
 
     @Before
     public void setUp() {
-        postRepository.deleteAllInBatch();
+        postRepository.deleteAll();
 
         post = new Post();
         post.setTitle("some title");
@@ -106,7 +107,7 @@ public class PostControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.posts", hasSize(2)))
                 .andExpect(jsonPath("$.posts.[0].post.title", is(post.getTitle())))
-                .andExpect(jsonPath("$.posts.[1].post.id", is(newPost.getId().intValue())))
+                .andExpect(jsonPath("$.posts.[1].post.id", Is.isA(Integer.class)))
                 .andExpect(jsonPath("$.posts.[1].post.title", is(newPost.getTitle())));
     }
 
