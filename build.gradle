@@ -60,3 +60,34 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("com.h2database:h2")
 }
+
+test {
+    include '**/*Test.*'
+    testLogging {
+        showStandardStreams = true
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                println "Results: ${result.resultType} (${result.testCount} tests, " +
+                        "${result.successfulTestCount} successes, ${result.failedTestCount} failures, " +
+                        "${result.skippedTestCount} skipped)"
+            }
+        }
+    }
+}
+
+task integrationTest(type: Test) {
+    include '**/*IT.*'
+    testLogging {
+        showStandardStreams = true
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                println "Results: ${result.resultType} (${result.testCount} tests, " +
+                        "${result.successfulTestCount} successes, ${result.failedTestCount} failures, " +
+                        "${result.skippedTestCount} skipped)"
+            }
+        }
+    }
+}
+
+integrationTest.shouldRunAfter test
+build.dependsOn integrationTest

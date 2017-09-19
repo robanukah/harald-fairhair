@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PostControllerTest {
+public class PostControllerIT {
 
     private final static Long NON_EXISTS_ID = 100L;
 
