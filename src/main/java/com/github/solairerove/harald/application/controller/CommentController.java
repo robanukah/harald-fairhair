@@ -1,5 +1,6 @@
 package com.github.solairerove.harald.application.controller;
 
+import com.github.solairerove.harald.application.dto.comment.CommentRequest;
 import com.github.solairerove.harald.application.dto.comment.CommentResponse;
 import com.github.solairerove.harald.application.dto.comment.CommentsResponse;
 import com.github.solairerove.harald.domain.model.Comment;
@@ -9,12 +10,14 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
@@ -45,14 +48,15 @@ public class CommentController {
         return ResponseEntity.status(OK).body(response);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity create(@RequestBody final PostDTO postDTO) {
-//        final Post request = mapper.map(postDTO, Post.class);
-//
-//        final Post createdPost = postService.create(request);
-//
-//        final PostDTO response = mapper.map(createdPost, PostDTO.class);
-//
-//        return ResponseEntity.status(CREATED).body(response);
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity create(@PathVariable(name = "postId") final Long postId,
+                                 @RequestBody final CommentRequest commentRequest) {
+        final Comment request = mapper.map(commentRequest, Comment.class);
+
+        final Comment createdComment = service.create(postId, request);
+
+        final CommentResponse response = mapper.map(createdComment, CommentResponse.class);
+
+        return ResponseEntity.status(CREATED).body(response);
+    }
 }
