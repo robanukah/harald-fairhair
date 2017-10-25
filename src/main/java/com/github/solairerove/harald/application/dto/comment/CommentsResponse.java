@@ -13,6 +13,6 @@ public class CommentsResponse implements Serializable {
 
     private static final long serialVersionUID = 8964579204407147330L;
 
-    @JsonProperty
+    @JsonProperty(value = "comments")
     private List<CommentResponse> comments;
 }

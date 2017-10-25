@@ -1,6 +1,7 @@
 package com.github.solairerove.harald.application.controller;
 
-import com.github.solairerove.harald.application.dto.PostDTO;
+import com.github.solairerove.harald.application.dto.post.PostRequest;
+import com.github.solairerove.harald.application.dto.post.PostResponse;
 import com.github.solairerove.harald.application.dto.post.PostsResponse;
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.service.post.PostService;
@@ -41,31 +42,31 @@ public class PostController {
     public ResponseEntity getById(@PathVariable(name = "id") final Long id) {
         final Post post = postService.fetchById(id);
 
-        final PostDTO response = mapper.map(post, PostDTO.class);
+        final PostResponse response = mapper.map(post, PostResponse.class);
 
         return ResponseEntity.status(OK).body(response);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity create(@RequestBody final PostDTO postDTO) {
-        final Post request = mapper.map(postDTO, Post.class);
+    public ResponseEntity create(@RequestBody final PostRequest request) {
+        final Post post = mapper.map(request, Post.class);
 
-        final Post createdPost = postService.create(request);
+        final Post createdPost = postService.create(post);
 
-        final PostDTO response = mapper.map(createdPost, PostDTO.class);
+        final PostResponse response = mapper.map(createdPost, PostResponse.class);
 
         return ResponseEntity.status(CREATED).body(response);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity update(@PathVariable(name = "id") final Long id,
-                                 @RequestBody final PostDTO postDTO) {
+                                 @RequestBody final PostRequest request) {
 
-        final Post request = mapper.map(postDTO, Post.class);
+        final Post post = mapper.map(request, Post.class);
 
-        final Post updatedPost = postService.updateById(id, request);
+        final Post updatedPost = postService.updateById(id, post);
 
-        final PostDTO response = mapper.map(updatedPost, PostDTO.class);
+        final PostResponse response = mapper.map(updatedPost, PostResponse.class);
 
         return ResponseEntity.status(OK).body(response);
     }
@@ -75,7 +76,7 @@ public class PostController {
 
         final Post deleted = postService.deleteById(id);
 
-        final PostDTO response = mapper.map(deleted, PostDTO.class);
+        final PostResponse response = mapper.map(deleted, PostResponse.class);
 
         return ResponseEntity.status(OK).body(response);
     }

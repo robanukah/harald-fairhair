@@ -13,6 +13,6 @@ public class PostsResponse implements Serializable {
 
     private static final long serialVersionUID = -4133671644550595228L;
 
-    @JsonProperty
+    @JsonProperty(value = "posts")
     private List<PostResponse> posts;
 }
