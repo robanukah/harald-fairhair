@@ -1,7 +1,7 @@
 package com.github.solairerove.harald.application.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.solairerove.harald.application.dto.PostDTO;
+import com.github.solairerove.harald.application.dto.post.PostRequest;
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.repository.PostRepository;
 import org.hamcrest.core.Is;
@@ -37,7 +37,7 @@ public class PostControllerIT {
 
     private Post post;
     private Long id;
-    private PostDTO postDTO;
+    private PostRequest postDTO;
 
     private MockMvc mvc;
 
@@ -61,7 +61,7 @@ public class PostControllerIT {
         post.setContent("awesome");
         id = postRepository.save(post).getId();
 
-        postDTO = new PostDTO();
+        postDTO = new PostRequest();
         postDTO.setTitle("dto title");
         postDTO.setAuthor("dto author");
         postDTO.setDate("dto date");
