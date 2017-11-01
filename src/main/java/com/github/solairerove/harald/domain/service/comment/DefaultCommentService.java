@@ -1,9 +1,11 @@
 package com.github.solairerove.harald.domain.service.comment;
 
 import com.github.solairerove.harald.domain.model.Comment;
+import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.model.exception.ResourceNotFoundException;
 import com.github.solairerove.harald.domain.repository.CommentRepository;
 import com.github.solairerove.harald.domain.repository.PostRepository;
+import com.github.solairerove.harald.domain.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultCommentService implements CommentService {
 
-    private final PostRepository postRepository;
+    private final PostService postService;
     private final CommentRepository repository;
 
     @Override
@@ -48,6 +50,9 @@ public class DefaultCommentService implements CommentService {
     @Override
     public Comment update(final Long postId, final Long commentId, final Comment comment) {
         log.info("Update comment: {} by id: {} from post: {}", comment, commentId, postId);
+
+        final Post post = postService.fetchById(postId);
+        post.getComments().stream();
 
         return null;
     }

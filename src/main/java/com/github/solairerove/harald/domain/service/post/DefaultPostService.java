@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -29,7 +30,7 @@ public class DefaultPostService implements PostService {
     public Post fetchById(final Long id) {
         log.info("Fetch post by id: {}", id);
 
-        return postRepository.findOneById(id)
+        return Optional.ofNullable(postRepository.findOneById(id))
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id: " + id + " doesn't exist"));
     }
 

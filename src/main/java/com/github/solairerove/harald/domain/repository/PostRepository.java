@@ -7,13 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
 
     @Transactional(readOnly = true)
     @Query(value = "SELECT * FROM post WHERE id = ?1", nativeQuery = true)
-    Optional<Post> findOneById(Long id);
+    Post findOneById(Long id);
 
     @Transactional(readOnly = true)
     @Query(value = "SELECT * FROM post", nativeQuery = true)
