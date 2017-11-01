@@ -2,6 +2,7 @@ package com.github.solairerove.harald.domain.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Column;
@@ -14,16 +15,17 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Data
-@Entity
 @NoArgsConstructor
+@Accessors(chain = true)
+@Entity
 @Table(name = "comment")
-@SequenceGenerator(name = "comment_generator", sequenceName = "comment_sequence", initialValue = 4, allocationSize = 1)
 public class Comment implements Persistable<Long> {
 
     private static final long serialVersionUID = -9033523910520751629L;
 
     @Id
     @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+    @SequenceGenerator(name = "comment_generator", sequenceName = "comment_sequence", initialValue = 4, allocationSize = 1)
     @GeneratedValue(generator = "comment_generator", strategy = GenerationType.SEQUENCE)
     private Long id;
 

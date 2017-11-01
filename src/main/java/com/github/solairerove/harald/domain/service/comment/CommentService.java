@@ -33,4 +33,14 @@ public interface CommentService {
      * @return {@link Comment} collection
      */
     List<Comment> fetchAllFromPost(Long postId);
+
+    /**
+     * Update {@link Comment} entity by id.
+     *
+     * @param postId    post id
+     * @param commentId comment id
+     * @param comment   {@link Comment} entity
+     * @return updated {@link Comment}
+     */
+    Comment update(Long postId, Long commentId, Comment comment);
 }
