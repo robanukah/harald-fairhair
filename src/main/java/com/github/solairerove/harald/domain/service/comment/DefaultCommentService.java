@@ -1,17 +1,15 @@
 package com.github.solairerove.harald.domain.service.comment;
 
 import com.github.solairerove.harald.domain.model.Comment;
-import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.model.exception.ResourceNotFoundException;
 import com.github.solairerove.harald.domain.repository.CommentRepository;
-import com.github.solairerove.harald.domain.repository.PostRepository;
-import com.github.solairerove.harald.domain.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -19,7 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultCommentService implements CommentService {
 
-    private final PostService postService;
     private final CommentRepository repository;
 
     @Override
@@ -51,9 +48,14 @@ public class DefaultCommentService implements CommentService {
     public Comment update(final Long postId, final Long commentId, final Comment comment) {
         log.info("Update comment: {} by id: {} from post: {}", comment, commentId, postId);
 
-        final Post post = postService.fetchById(postId);
-        post.getComments().stream();
+        final Comment saved = fetchById(postId, commentId);
 
-        return null;
+        repository.updateOneById(commentId,
+                Objects.isNull(comment.getAuthor()) ? saved.getAuthor() : comment.getAuthor(),
+                Objects.isNull(comment.getDate()) ? saved.getDate() : comment.getDate(),
+                Objects.isNull(comment.getContent()) ? saved.getContent() : comment.getContent()
+        );
+
+        return saved;
     }
 }

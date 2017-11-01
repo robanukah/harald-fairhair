@@ -27,7 +27,7 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
     @Query(value = "UPDATE comment SET " +
             "author = COALESCE(?2, author), " +
             "date = COALESCE(?3, author), " +
-            "content = COALESCE(CAST(?5 AS TEXT), content) " +
+            "content = COALESCE(CAST(?4 AS TEXT), content) " +
             "WHERE id = ?1", nativeQuery = true)
-    void updateOneById(Long postId, Long commentId, String author, String date, String content);
+    void updateOneById(Long commentId, String author, String date, String content);
 }

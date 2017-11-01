@@ -59,4 +59,18 @@ public class CommentController {
 
         return ResponseEntity.status(CREATED).body(response);
     }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity update(@PathVariable(name = "postId") final Long postId,
+                                 @PathVariable(name = "id") final Long commentId,
+                                 @RequestBody final CommentRequest commentRequest) {
+
+        final Comment request = mapper.map(commentRequest, Comment.class);
+
+        final Comment updatedComment = service.update(postId, commentId, request);
+
+        final CommentResponse response = mapper.map(updatedComment, CommentResponse.class);
+
+        return ResponseEntity.status(OK).body(response);
+    }
 }

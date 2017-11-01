@@ -17,20 +17,20 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DefaultPostService implements PostService {
 
-    private final PostRepository postRepository;
+    private final PostRepository repository;
 
     @Override
     public Post create(final Post post) {
         log.info("Create post: {}", post);
 
-        return postRepository.save(post);
+        return repository.save(post);
     }
 
     @Override
     public Post fetchById(final Long id) {
         log.info("Fetch post by id: {}", id);
 
-        return Optional.ofNullable(postRepository.findOneById(id))
+        return Optional.ofNullable(repository.findOneById(id))
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id: " + id + " doesn't exist"));
     }
 
@@ -38,7 +38,7 @@ public class DefaultPostService implements PostService {
     public List<Post> fetchAll() {
         log.info("Fetch all posts");
 
-        return postRepository.findAll();
+        return repository.findAll();
     }
 
     @Override
@@ -47,14 +47,14 @@ public class DefaultPostService implements PostService {
 
         final Post saved = fetchById(id);
 
-        postRepository.updateOneById(id,
+        repository.updateOneById(id,
                 Objects.isNull(post.getTitle()) ? saved.getTitle() : post.getTitle(),
                 Objects.isNull(post.getAuthor()) ? saved.getAuthor() : post.getAuthor(),
                 Objects.isNull(post.getDate()) ? saved.getDate() : post.getDate(),
                 Objects.isNull(post.getContent()) ? saved.getContent() : post.getContent()
         );
 
-        return fetchById(id);
+        return saved;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DefaultPostService implements PostService {
 
         final Post deleted = fetchById(id);
 
-        postRepository.deletePostById(id);
+        repository.delete(id);
 
         return deleted;
     }
