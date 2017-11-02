@@ -124,18 +124,18 @@ public class PostControllerIT {
                 .andExpect(jsonPath("$.post.author", is(postDTO.getAuthor())));
     }
 
-//    @Test
-//    public void updateTest_with_normal_postDTO_expect_success() throws Exception {
-//        mvc.perform(request(PUT, "/api/v1/posts/" + id)
-//                .accept(APPLICATION_JSON_UTF8_VALUE)
-//                .contentType(APPLICATION_JSON_UTF8_VALUE)
-//                .content(objectMapper.writeValueAsBytes(postDTO)))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.post.id", is(id.intValue())))
-//                .andExpect(jsonPath("$.post.title", is(postDTO.getTitle())))
-//                .andExpect(jsonPath("$.post.author", is(postDTO.getAuthor())));
-//    }
+    @Test
+    public void updateTest_with_normal_postDTO_expect_success() throws Exception {
+        mvc.perform(request(PUT, "/api/v1/posts/" + id)
+                .accept(APPLICATION_JSON_UTF8_VALUE)
+                .contentType(APPLICATION_JSON_UTF8_VALUE)
+                .content(objectMapper.writeValueAsBytes(postDTO)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.post.id", is(id.intValue())))
+                .andExpect(jsonPath("$.post.title", is(post.getTitle())))
+                .andExpect(jsonPath("$.post.author", is(post.getAuthor())));
+    }
 
     @Test
     public void updateTest_withNonExistsId_expect_error() throws Exception {

@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertThat;
 
+@DataJpaTest
 @RunWith(SpringRunner.class)
-@SpringBootTest
 public class PostRepositoryTest {
 
     private static final Long NON_EXISTS_ID = 100L;
@@ -40,14 +40,14 @@ public class PostRepositoryTest {
 
     @Test
     public void findOneByIdTest_expect_success() {
-        final Post saved = postRepository.findOneById(id).get();
+        final Post saved = postRepository.findOneById(id);
 
         assertThat(saved.getContent(), Is.is(post.getContent()));
     }
 
     @Test
     public void findOneByIdTest_withNonExistsId() {
-        final Post saved = postRepository.findOneById(NON_EXISTS_ID).orElse(null);
+        final Post saved = postRepository.findOneById(NON_EXISTS_ID);
 
         assertThat(saved, IsNull.nullValue(Post.class));
     }
@@ -82,25 +82,24 @@ public class PostRepositoryTest {
     }
 
     @Test
+    public void updateOneByIdTest_withNullField_expect_success() {
+        final Post saved = postRepository.findOne(id);
+
+        postRepository.updateOneById(id,
+                saved.getTitle(),
+                null,
+                saved.getDate(),
+                saved.getContent());
+
+        assertThat(postRepository.findOne(id).getAuthor(), Is.is(saved.getAuthor()));
+    }
+
+    @Test
     public void updateOneByIdTest_withNullFields_expect_success() {
         final Post saved = postRepository.findOne(id);
 
         postRepository.updateOneById(id, null, null, null, null);
 
         assertThat(postRepository.findOne(id).getAuthor(), Is.is(saved.getAuthor()));
-    }
-
-    @Test
-    public void deletePostByIdTest_expect_success() {
-        postRepository.deletePostById(id);
-
-        assertThat(0L, Is.is(postRepository.count()));
-    }
-
-    @Test
-    public void deletePostByIdTest_expect_nonDeleteState() {
-        postRepository.deletePostById(NON_EXISTS_ID);
-
-        assertThat(1L, Is.is(postRepository.count()));
     }
 }

@@ -3,7 +3,6 @@ package com.github.solairerove.harald.domain.service.post;
 import com.github.solairerove.harald.domain.model.Post;
 import com.github.solairerove.harald.domain.model.exception.ResourceNotFoundException;
 import com.github.solairerove.harald.domain.repository.PostRepository;
-import com.github.solairerove.harald.domain.service.post.PostService;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class PostServiceTest {
 
     private static final Long NON_EXISTS_ID = 100L;
@@ -54,6 +55,16 @@ public class PostServiceTest {
     }
 
     @Test
+    public void createTest_expect_success_verify_count() {
+        final String content = "One more saved post";
+        post.setContent(content);
+
+        postService.create(post);
+
+        assertThat(2L, Is.is(postRepository.count()));
+    }
+
+    @Test
     public void fetchByIdTest_expect_success() {
         final Post fetched = postService.fetchById(id);
 
@@ -63,6 +74,20 @@ public class PostServiceTest {
     @Test(expected = ResourceNotFoundException.class)
     public void fetchByIdTest_withIncorrectId_expect_ResourceNotFound() {
         postService.fetchById(NON_EXISTS_ID);
+    }
+
+    @Test
+    public void fetchAllTest_assert_title_expect_success() {
+        final List<Post> fetched = postService.fetchAll();
+
+        assertThat(fetched.size(), Is.is(1));
+    }
+
+    @Test
+    public void fetchAllTest_assert_count_expect_success() {
+        final List<Post> fetched = postService.fetchAll();
+
+        assertThat(fetched.get(0).getTitle(), Is.is(post.getTitle()));
     }
 
     @Test
@@ -87,6 +112,26 @@ public class PostServiceTest {
         postService.updateById(id, updated);
 
         assertThat(postRepository.findOne(id).getContent(), Is.is(post.getContent()));
+    }
+
+    @Test
+    public void updateByIdTest_withNull_assertUpdatedField_expect_success() {
+        final Post updated = new Post();
+        updated.setTitle(null);
+
+        postService.updateById(id, updated);
+
+        assertThat(postRepository.findOne(id).getTitle(), Is.is(post.getTitle()));
+    }
+
+    @Test
+    public void updateByIdTest_assertCount_expect_success() {
+        final Post updated = new Post();
+        updated.setTitle("cool");
+
+        postService.updateById(id, updated);
+
+        assertThat(postRepository.count(), Is.is(1L));
     }
 
     @Test
