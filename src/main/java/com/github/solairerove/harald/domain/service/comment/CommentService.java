@@ -43,4 +43,13 @@ public interface CommentService {
      * @return updated {@link Comment}
      */
     Comment update(Long postId, Long commentId, Comment comment);
+
+    /**
+     * Delete {@link Comment} entity by id.
+     *
+     * @param postId    post id
+     * @param commentId comment id
+     * @return deleted {@link Comment}
+     */
+    Comment delete(Long postId, Long commentId);
 }

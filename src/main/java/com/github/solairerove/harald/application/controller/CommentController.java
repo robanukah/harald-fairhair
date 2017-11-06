@@ -73,4 +73,14 @@ public class CommentController {
 
         return ResponseEntity.status(OK).body(response);
     }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable(name = "postId") final Long postId,
+                                 @PathVariable(name = "id") final Long commentId) {
+        final Comment deleted = service.delete(postId, commentId);
+
+        final CommentResponse response = mapper.map(deleted, CommentResponse.class);
+
+        return ResponseEntity.status(OK).body(response);
+    }
 }

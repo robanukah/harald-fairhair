@@ -58,4 +58,15 @@ public class DefaultCommentService implements CommentService {
 
         return saved;
     }
+
+    @Override
+    public Comment delete(final Long postId, final Long commentId) {
+        log.info("Delete comment: {} from post: {}", commentId, postId);
+
+        final Comment saved = fetchById(postId, commentId);
+
+        repository.delete(saved);
+
+        return saved;
+    }
 }
