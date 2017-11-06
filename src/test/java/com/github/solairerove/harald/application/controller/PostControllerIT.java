@@ -79,8 +79,8 @@ public class PostControllerIT {
                 .contentType(APPLICATION_JSON_UTF8_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.post.title", is(post.getTitle())))
-                .andExpect(jsonPath("$.post.author", is(post.getAuthor())));
+                .andExpect(jsonPath("$.title", is(post.getTitle())))
+                .andExpect(jsonPath("$.author", is(post.getAuthor())));
     }
 
     @Test
@@ -106,9 +106,9 @@ public class PostControllerIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.posts", hasSize(2)))
-                .andExpect(jsonPath("$.posts.[0].post.title", is(post.getTitle())))
-                .andExpect(jsonPath("$.posts.[1].post.id", Is.isA(Integer.class)))
-                .andExpect(jsonPath("$.posts.[1].post.title", is(newPost.getTitle())));
+                .andExpect(jsonPath("$.posts.[0].title", is(post.getTitle())))
+                .andExpect(jsonPath("$.posts.[1].id", Is.isA(Integer.class)))
+                .andExpect(jsonPath("$.posts.[1].title", is(newPost.getTitle())));
     }
 
     @Test
@@ -119,9 +119,9 @@ public class PostControllerIT {
                 .content(objectMapper.writeValueAsBytes(postDTO)))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.post.id", isA(Integer.class)))
-                .andExpect(jsonPath("$.post.title", is(postDTO.getTitle())))
-                .andExpect(jsonPath("$.post.author", is(postDTO.getAuthor())));
+                .andExpect(jsonPath("$.id", isA(Integer.class)))
+                .andExpect(jsonPath("$.title", is(postDTO.getTitle())))
+                .andExpect(jsonPath("$.author", is(postDTO.getAuthor())));
     }
 
     @Test
@@ -132,9 +132,9 @@ public class PostControllerIT {
                 .content(objectMapper.writeValueAsBytes(postDTO)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.post.id", is(id.intValue())))
-                .andExpect(jsonPath("$.post.title", is(post.getTitle())))
-                .andExpect(jsonPath("$.post.author", is(post.getAuthor())));
+                .andExpect(jsonPath("$.id", is(id.intValue())))
+                .andExpect(jsonPath("$.title", is(post.getTitle())))
+                .andExpect(jsonPath("$.author", is(post.getAuthor())));
     }
 
     @Test
@@ -156,8 +156,8 @@ public class PostControllerIT {
                 .contentType(APPLICATION_JSON_UTF8_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.post.title", is(post.getTitle())))
-                .andExpect(jsonPath("$.post.author", is(post.getAuthor())));
+                .andExpect(jsonPath("$.title", is(post.getTitle())))
+                .andExpect(jsonPath("$.author", is(post.getAuthor())));
 
         assertThat(0L, is(postRepository.count()));
     }
