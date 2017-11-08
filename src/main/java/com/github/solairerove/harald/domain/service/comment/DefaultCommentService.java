@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -49,12 +48,9 @@ public class DefaultCommentService implements CommentService {
         log.info("Update comment: {} by id: {} from post: {}", comment, commentId, postId);
 
         final Comment saved = fetchById(postId, commentId);
-
-        repository.updateOneById(commentId,
-                Objects.isNull(comment.getAuthor()) ? saved.getAuthor() : comment.getAuthor(),
-                Objects.isNull(comment.getDate()) ? saved.getDate() : comment.getDate(),
-                Objects.isNull(comment.getContent()) ? saved.getContent() : comment.getContent()
-        );
+        saved.setAuthor(comment.getAuthor());
+        saved.setDate(comment.getDate());
+        saved.setContent(comment.getContent());
 
         return saved;
     }

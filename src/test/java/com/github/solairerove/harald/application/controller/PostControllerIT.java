@@ -133,8 +133,8 @@ public class PostControllerIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(id.intValue())))
-                .andExpect(jsonPath("$.title", is(post.getTitle())))
-                .andExpect(jsonPath("$.author", is(post.getAuthor())));
+                .andExpect(jsonPath("$.title", is(postDTO.getTitle())))
+                .andExpect(jsonPath("$.author", is(postDTO.getAuthor())));
     }
 
     @Test

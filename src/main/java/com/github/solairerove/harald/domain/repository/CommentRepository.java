@@ -1,7 +1,6 @@
 package com.github.solairerove.harald.domain.repository;
 
 import com.github.solairerove.harald.domain.model.Comment;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,13 +20,4 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
             "INNER JOIN comment ON post.id = ?1 " +
             "WHERE comment.post_id = post.id", nativeQuery = true)
     List<Comment> findAllByPostId(Long postId);
-
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE comment SET " +
-            "author = COALESCE(?2, author), " +
-            "date = COALESCE(?3, author), " +
-            "content = COALESCE(CAST(?4 AS TEXT), content) " +
-            "WHERE id = ?1", nativeQuery = true)
-    void updateOneById(Long commentId, String author, String date, String content);
 }

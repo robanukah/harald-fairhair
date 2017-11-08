@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -46,15 +45,12 @@ public class DefaultPostService implements PostService {
         log.info("Update post: {} by id: {}", post, id);
 
         final Post saved = fetchById(id);
+        saved.setTitle(post.getTitle());
+        saved.setAuthor(post.getAuthor());
+        saved.setDate(post.getDate());
+        saved.setContent(post.getContent());
 
-        repository.updateOneById(id,
-                Objects.isNull(post.getTitle()) ? saved.getTitle() : post.getTitle(),
-                Objects.isNull(post.getAuthor()) ? saved.getAuthor() : post.getAuthor(),
-                Objects.isNull(post.getDate()) ? saved.getDate() : post.getDate(),
-                Objects.isNull(post.getContent()) ? saved.getContent() : post.getContent()
-        );
-
-        return saved;
+        return repository.save(saved);
     }
 
     @Override

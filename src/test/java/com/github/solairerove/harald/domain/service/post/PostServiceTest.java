@@ -96,42 +96,13 @@ public class PostServiceTest {
 
         final Post updated = new Post();
         updated.setTitle(title);
+        updated.setAuthor("solairerove");
+        updated.setDate("26-04-1986");
+        updated.setContent("My Content");
 
         postService.updateById(id, updated);
 
         assertThat(postRepository.findOne(id).getTitle(), Is.is(title));
-    }
-
-    @Test
-    public void updateByIdTest_assertNonUpdatedField_expect_success() {
-        final String title = "Some updated awesome title";
-
-        final Post updated = new Post();
-        updated.setTitle(title);
-
-        postService.updateById(id, updated);
-
-        assertThat(postRepository.findOne(id).getContent(), Is.is(post.getContent()));
-    }
-
-    @Test
-    public void updateByIdTest_withNull_assertUpdatedField_expect_success() {
-        final Post updated = new Post();
-        updated.setTitle(null);
-
-        postService.updateById(id, updated);
-
-        assertThat(postRepository.findOne(id).getTitle(), Is.is(post.getTitle()));
-    }
-
-    @Test
-    public void updateByIdTest_assertCount_expect_success() {
-        final Post updated = new Post();
-        updated.setTitle("cool");
-
-        postService.updateById(id, updated);
-
-        assertThat(postRepository.count(), Is.is(1L));
     }
 
     @Test
