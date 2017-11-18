@@ -52,7 +52,7 @@ public class DefaultCommentService implements CommentService {
         saved.setDate(comment.getDate());
         saved.setContent(comment.getContent());
 
-        return saved;
+        return repository.save(saved);
     }
 
     @Override
